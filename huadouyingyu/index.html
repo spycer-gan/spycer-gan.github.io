@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="花都英语培训 - 提供专业的英语口语、商务英语及雅思托福培训课程。拥有经验丰富的外教团队，个性化教学方案，助您轻松提升英语能力。">
+    <meta name="keywords" content="花都英语培训,英语口语培训,雅思托福,商务英语,英语学习">
+    <title>花都英语培训-专业英语口语与考试辅导机构</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #00a8e8;
+            --accent-color: #ff9800;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --spacing-unit: 16px;
+            --border-radius: 8px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header & Nav */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #004494;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-gray);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Course Section */
+        .courses {
+            padding: 80px 0;
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            box-shadow: var(--shadow);
+        }
+
+        .course-image {
+            height: 180px;
+            background-color: #ddd;
+            position: relative;
+        }
+        
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .course-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Why Us / Stats */
+        .stats-section {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            background: var(--white);
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: var(--text-gray);
+            display: none;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            nav ul {
+                margin: 15px 0;
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>花都英语培训</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#courses">培训课程</a></li>
+                    <li><a href="#features">师资力量</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-button">免费试听</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>突破语言障碍，开启自信人生</h1>
+            <p>专注花都地区英语口语与应试培训，拥有纯正外教资源，定制化学习方案，让您在轻松氛围中快速提升英语水平。</p>
+            <div class="hero-buttons">
+                <a href="#courses" class="cta-button">查看课程</a>
+                <a href="#contact" class="btn-outline">预约测评</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>为什么选择我们</h2>
+                <p>基于科学教学体系，结合本地化需求，为您提供全方位的英语提升服务</p>
+            </div>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>中外教结合</h3>
+                    <p>拥有丰富的教学经验，发音纯正，擅长互动式教学，帮助学员快速适应口语环境。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>小班制教学</h3>
+                    <p>严格控制班级人数，确保每位学员都能获得充分的关注与指导，学习效果更佳。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>定期测评反馈</h3>
+                    <p>每阶段进行严格水平测试，生成详细的学习报告，精准定位薄弱环节并针对性提升。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>场景化应用</h3>
+                    <p>模拟职场面试、商务谈判、日常交流等真实场景，学以致用，拒绝哑巴英语。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses" id="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门课程推荐</h2>
+                <p>根据不同年龄段与学习目标，设计科学合理的课程体系</p>
+            </div>
+            <div class="course-grid">
+                <article class="course-card">
+                    <div class="course-image">
+                        <span class="course-tag">热门</span>
+                        <img src="https://picsum.photos/seed/english1/400/300" alt="商务英语培训">
+                    </div>
+                    <div class="course-content">
+                        <h3>商务英语实战班</h3>
+                        <p>针对职场人士，涵盖邮件写作、电话沟通、商务谈判及国际会议技巧。</p>
+                        <div class="course-meta">
+                            <span>周末班 / 晚班</span>
+                            <span class="price">¥2,800/期</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="course-card">
+                    <div class="course-image">
+                        <span class="course-tag">升学</span>
+                        <img src="https://picsum.photos/seed/english2/400/300" alt="雅思托福强化">
+                    </div>
+                    <div class="course-content">
+                        <h3>雅思托福强化营</h3>
+                        <p>全真模拟考试环境，精讲解题技巧，助力冲刺高分，顺利通过留学申请。</p>
+                        <div class="course-meta">
+                            <span>全日制 / 密训</span>
+                            <span class="price">¥5,800/期</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="course-card">
+                    <div class="course-image">
+                        <span class="course-tag">口语</span>
+                        <img src="https://picsum.photos/seed/english3/400/300" alt="零基础英语入门">
+                    </div>
+                    <div class="course-content">
+                        <h3>零基础英语口语</h3>
+                        <p>从音标、基础语法入手，建立自信，通过简单对话和游戏快速开口说英语。</p>
+                        <div class="course-meta">
+                            <span>晚班 / 周末</span>
+                            <span class="price">¥1,980/期</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>年办学经验</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>累计学员</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>专业外教</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>学员满意度</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-banner">
+        <div class="container cta-box">
+            <h2>现在报名，享受免费英语水平测评</h2>
+            <p style="margin: 20px 0 30px; color: var(--text-gray);">专业老师为您定制专属学习计划，先试听，再付费，无后顾之忧。</p>
+            <a href="#contact" class="cta-button" style="padding: 15px 40px; font-size: 1.1rem;">立即预约</a>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>关于花都英语培训的疑问，这里都有答案</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">贵校的上课时间是如何安排的？ <span>+</span></div>
+                    <div class="faq-answer">我们提供多种上课时段，包括周末白班、平日晚班以及全日制集训营，您可以根据个人时间自由选择。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如果没有英语基础可以报名吗？ <span>+</span></div>
+                    <div class="faq-answer">完全可以。我们设有专门的零基础入门课程，从音标和最基础的语法开始教学，帮助您循序渐进地掌握英语。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如果中途想退课怎么办？ <span>+</span></div>
+                    <div class="faq-answer">我们支持在开课前无条件退课。课程进行中，如因个人原因需暂停，可申请保留课时余额，待恢复后继续使用。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">外教是否持有正规教师资格证？ <span>+</span></div>
+                    <div class="faq-answer">所有外教均经过严格的背景调查与面试筛选，必须持有TEFL/TESOL等国际认可的教学资格证书。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <span style="color:var(--white)">花都英语培训</span>
+                    </div>
+                    <p>致力于为花都地区提供最优质的英语教育服务，让每一位学员都能自信开口，流利交流。</p>
+                    <p>地址：广州市花都区新华街道XX路XX号商业中心3楼</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">师资团队</a></li>
+                        <li><a href="#">课程体系</a></li>
+                        <li><a href="#">学员案例</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系方式</h4>
+                    <ul class="footer-links">
+                        <li>电话：020-12345678</li>
+                        <li>手机：138-0000-0000</li>
+                        <li>邮箱：contact@huaduenglish.com</li>
+                        <li>工作时间：周一至周日 9:00-21:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 花都英语培训中心 版权所有 | 仅供演示使用</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+                const span = item.querySelector('span');
+                span.textContent = parent.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
