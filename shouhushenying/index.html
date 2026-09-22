@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="守护神英雄竞赛 - 沉浸式文字冒险RPG游戏官网。探索神域秘境，集结守护神，参与史诗级英雄竞赛，赢取荣耀与稀有装备。">
+    <meta name="keywords" content="守护神英雄竞赛,文字RPG,网页游戏,神域冒险,英雄竞技">
+    <title>守护神英雄竞赛-沉浸式神域冒险与英雄竞技平台</title>
+    <style>
+        :root {
+            --primary-gold: #FFD700;
+            --primary-purple: #6A0DAD;
+            --dark-bg: #0f0c29;
+            --card-bg: #1a1a2e;
+            --text-main: #ffffff;
+            --text-sub: #b3b3b3;
+            --accent-blue: #00d4ff;
+            --font-stack: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), var(--accent-blue));
+            color: white;
+            box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #2b1055 0%, #0f0c29 70%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(106, 13, 173, 0.6);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-sub);
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .section-title p {
+            color: var(--text-sub);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Game World Preview */
+        .game-preview {
+            background: #16162a;
+        }
+
+        .preview-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .preview-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .preview-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+
+        .preview-text p {
+            margin-bottom: 20px;
+            color: var(--text-sub);
+        }
+
+        .preview-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .preview-list li::before {
+            content: '✓';
+            color: var(--primary-gold);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .preview-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, #2b1055, #7597de);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .preview-image::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M1 1h2v2H1V1zm4 0h2v2H5V1zm4 0h2v2H9V1zm4 0h2v2h-2V1zm4 0h2v2h-2V1zM1 5h2v2H1V5zm4 0h2v2H5V5zm4 0h2v2H9V5zm4 0h2v2h-2V5zm4 0h2v2h-2V5zM1 9h2v2H1V9zm4 0h2v2H5V9zm4 0h2v2H9V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9zM1 13h2v2H1v-2zm4 0h2v2H5v-2zm4 0h2v2H9v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM1 17h2v2H1v-2zm4 0h2v2H5v-2zm4 0h2v2H9v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z" fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"/%3E%3C/svg%3E');
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50%, -50%); }
+        }
+
+        /* Ranking Section */
+        .ranking-section {
+            background: var(--card-bg);
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .ranking-table th, .ranking-table td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ranking-table th {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        .ranking-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .rank-num {
+            font-weight: bold;
+            width: 50px;
+        }
+
+        .rank-1 { color: #FFD700; font-size: 1.2rem; }
+        .rank-2 { color: #C0C0C0; font-size: 1.1rem; }
+        .rank-3 { color: #CD7F32; font-size: 1.1rem; }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            margin-top: 15px;
+            color: var(--text-sub);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-item:not(.active) .faq-question::after {
+            content: '+';
+        }
+
+        /* Footer */
+        footer {
+            background: #050508;
+            padding: 50px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Simplified mobile nav for demo */
+            .hero-buttons { flex-direction: column; }
+            .preview-layout { flex-direction: column-reverse; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">守护神英雄竞赛</div>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#game-world">游戏世界</a>
+                <a href="#features">游戏特色</a>
+                <a href="#ranking">英雄榜单</a>
+                <a href="#faq">常见问题</a>
+            </nav>
+            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.9rem;">立即登录</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>集结神域，荣耀竞技</h1>
+                <p>加入史诗级文字冒险RPG《守护神英雄竞赛》。在神秘的亚特兰蒂斯遗迹中，选择你的守护神，与其他玩家展开策略对决与资源争夺。</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">开始冒险</button>
+                    <button class="btn btn-outline">查看演示</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>为什么选择守护神英雄竞赛？</h2>
+                    <p>融合策略、养成与竞技的全新体验</p>
+                </div>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">⚔️</div>
+                        <h3>策略竞技</h3>
+                        <p>不仅仅是数值比拼，更考验你的布阵策略与资源管理能力。在实时竞技场中击败对手，赢得稀有守护神。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🏛️</div>
+                        <h3>神域建设</h3>
+                        <p>建设并升级你的专属神殿，招募不同属性的守护神，打造坚不可摧的防御体系。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">📜</div>
+                        <h3>史诗剧情</h3>
+                        <p>探索古老的亚特兰蒂斯文明，揭开神域的秘密，参与贯穿全服的史诗战役。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>公会争霸</h3>
+                        <p>加入强大的公会，参与跨服公会战，与兄弟并肩作战，争夺至高无上的王座。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">🔮</div>
+                        <h3>命运觉醒</h3>
+                        <p>收集碎片，唤醒沉睡的远古神灵。每只守护神都拥有独特的觉醒技能与被动效果。</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>随时随地</h3>
+                        <p>完美适配移动端与桌面端，碎片时间也能进行战斗，随时随地体验竞技乐趣。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game World Section -->
+        <section id="game-world" class="section game-preview">
+            <div class="container">
+                <div class="preview-layout">
+                    <div class="preview-image">
+                        <!-- Abstract visual representation using CSS -->
+                        <div style="position: relative; z-index: 2; text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 10px;">🔮</div>
+                            <div style="font-weight: bold; letter-spacing: 2px;">神域之门</div>
+                        </div>
+                    </div>
+                    <div class="preview-text">
+                        <h2>探索未知的神域大陆</h2>
+                        <p>在《守护神英雄竞赛》中，玩家将扮演一名被选中的召唤师。你的目标是探索地图上散落的遗迹，解锁隐藏的守护神，并参与全服范围内的英雄竞赛。</p>
+                        <ul class="preview-list">
+                            <li>数百种不同的守护神可供收集与培养</li>
+                            <li>复杂的技能联动与元素克制系统</li>
+                            <li>动态的天气系统影响战斗策略</li>
+                            <li>全服实时排行榜与赛季奖励机制</li>
+                        </ul>
+                        <div style="margin-top: 30px;">
+                            <a href="#" class="btn btn-primary">阅读游戏手册</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ranking Section -->
+        <section id="ranking" class="section ranking-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>全服英雄排行榜</h2>
+                    <p>见证最强召唤师的诞生</p>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>召唤师</th>
+                                <th>公会</th>
+                                <th>胜率</th>
+                                <th>当前段位</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="rank-num rank-1">1</td>
+                                <td><span style="color: #00d4ff; font-weight: bold;">暗夜猎手</span></td>
+                                <td>雷霆公会</td>
+                                <td>92.5%</td>
+                                <td><span style="color: #FFD700; font-weight: bold;">传说·冠军</span></td>
+                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="rank-num rank-2">2</td>
+                                <td><span style="color: #00d4ff; font-weight: bold;">星辰之泪</span></td>
+                                <td>月影联盟</td>
+                                <td>90.1%</td>
+                                <td><span style="color: #FFD700; font-weight: bold;">传说·冠军</span></td>
+                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="rank-num rank-3">3</td>
+                                <td><span style="color: #00d4ff; font-weight: bold;">烈焰战神</span></td>
+                                <td>红莲战队</td>
+                                <td>88.4%</td>
+                                <td><span style="color: #C0C0C0; font-weight: bold;">王者·不朽</span></td>
+                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="rank-num">4</td>
+                                <td>风语者</td>
+                                <td>自由之翼</td>
+                                <td>85.2%</td>
+                                <td><span style="color: #C0C0C0; font-weight: bold;">王者·不朽</span></td>
+                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="rank-num">5</td>
+                                <td>冰霜女王</td>
+                                <td>极寒领地</td>
+                                <td>84.9%</td>
+                                <td><span style="color: #CD7F32; font-weight: bold;">钻石·荣耀</span></td>
+                                <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">查看</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-title">
+                    <h2>常见问题</h2>
+                    <p>关于游戏玩法与机制的解答</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">游戏如何开始？</div>
+                    <div class="faq-answer">
+                        玩家只需注册账号即可进入游戏。游戏提供引导任务，帮助新手玩家快速熟悉操作与核心玩法。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">守护神如何获取？</div>
+                    <div class="faq-answer">
+                        守护神可以通过完成主线任务、参与限时活动、抽取召唤卡池或通过竞技场排名奖励获得。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">游戏是否需要联网？</div>
+                    <div class="faq-answer">
+                        是的，本游戏为在线多人竞技游戏，需要保持网络连接以同步服务器数据、参与实时战斗和排行榜更新。
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">支持哪些平台？</div>
+                    <div class="faq-answer">
+                        目前支持PC端网页浏览器访问以及iOS/Android移动端应用商店下载，数据互通。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">游戏公告</a>
+                <a href="#">用户协议</a>
+                <a href="#">隐私政策</a>
+                <a href="#">联系客服</a>
+            </div>
+            <p class="copyright">
+                &copy; 2023 守护神英雄竞赛运营团队. 保留所有权利. <br>
+                本游戏包含虚拟货币交易，请理性消费，未成年人需在监护人指导下进行游戏。
+            </p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
