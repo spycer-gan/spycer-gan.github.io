@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天龙八部武圣卡-武侠卡牌收藏鉴赏与实战图鉴</title>
+    <meta name="description" content="天龙八部武圣卡专题页，提供武圣卡图鉴、属性分析、获取攻略、收藏价值评估及实战卡组搭配建议。">
+    <meta name="keywords" content="天龙八部武圣卡,武侠卡牌,卡牌游戏攻略,卡组搭配,游戏图鉴">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #8B0000;
+            --secondary-color: #D4AF37;
+            --dark-bg: #1a1a1a;
+            --card-bg: #2a2a2a;
+            --text-main: #f0f0f0;
+            --text-muted: #aaaaaa;
+            --spacing-unit: 16px;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(26, 26, 26, 0.95);
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: normal;
+            opacity: 0.8;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/seed/wuxia/1200/600');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: #444;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            border-top: 1px solid #444;
+            padding-top: 10px;
+        }
+
+        .stat-item strong {
+            color: var(--text-main);
+        }
+
+        /* Info Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .info-table th, .info-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        .info-table th {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .info-table tr:hover {
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        /* Strategy List */
+        .strategy-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .strategy-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .strategy-item h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .strategy-item p {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+            .header-content {
+                justify-content: center;
+            }
+            .info-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                武圣卡图鉴 <span>Wusheng Card Guide</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#overview">图鉴概览</a></li>
+                    <li><a href="#attributes">属性分析</a></li>
+                    <li><a href="#strategies">实战策略</a></li>
+                    <li><a href="#collection">收藏指南</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>天龙八部武圣卡</h1>
+                <p>深入解析武侠世界中的顶级卡牌图鉴，掌握属性、技能与实战搭配，助您在卡牌对战中运筹帷幄。</p>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="container">
+            <h2 class="section-title">武圣卡图鉴概览</h2>
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <article class="card">
+                    <img src="https://picsum.photos/seed/card1/400/250" alt="武圣卡-萧峰" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">武圣卡·萧峰</h3>
+                        <p class="card-desc">以降龙十八掌闻名，拥有极高的物理攻击力和群体控制能力，是前排肉盾与输出的完美结合。</p>
+                        <div class="card-stats">
+                            <span class="stat-item">攻击: <strong>SSS</strong></span>
+                            <span class="stat-item">防御: <strong>S</strong></span>
+                            <span class="stat-item">稀有度: <strong>UR</strong></span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <img src="https://picsum.photos/seed/card2/400/250" alt="武圣卡-段誉" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">武圣卡·段誉</h3>
+                        <p class="card-desc">六脉神剑远程输出，具备极高的闪避率和爆发伤害，擅长风筝对手，保护后排核心。</p>
+                        <div class="card-stats">
+                            <span class="stat-item">攻击: <strong>S</strong></span>
+                            <span class="stat-item">防御: <strong>C</strong></span>
+                            <span class="stat-item">稀有度: <strong>SR</strong></span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <img src="https://picsum.photos/seed/card3/400/250" alt="武圣卡-虚竹" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">武圣卡·虚竹</h3>
+                        <p class="card-desc">北冥神功吸取内力，拥有强大的持续恢复能力和控制技能，是持久战的强力支援。</p>
+                        <div class="card-stats">
+                            <span class="stat-item">攻击: <strong>A</strong></span>
+                            <span class="stat-item">防御: <strong>S</strong></span>
+                            <span class="stat-item">稀有度: <strong>SSR</strong></span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Attributes Analysis -->
+        <section id="attributes" class="container">
+            <h2 class="section-title">核心属性深度解析</h2>
+            <table class="info-table">
+                <thead>
+                    <tr>
+                        <th>属性名称</th>
+                        <th>定义说明</th>
+                        <th>实战影响</th>
+                        <th>获取途径</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>破甲值</td>
+                        <td>无视目标一定比例的物理防御。</td>
+                        <td>对高防御阵容（如少林）有奇效，大幅提升输出效率。</td>
+                        <td>高级副本掉落、活动兑换。</td>
+                    </tr>
+                    <tr>
+                        <td>内力回复</td>
+                        <td>战斗中每回合恢复的内力值。</td>
+                        <td>决定技能释放频率，高内力回复是控制型卡牌的关键。</td>
+                        <td>洗练、商城购买。</td>
+                    </tr>
+                    <tr>
+                        <td>暴击抗性</td>
+                        <td>降低被敌人暴击的概率。</td>
+                        <td>提高卡牌生存能力，避免被瞬间秒杀。</td>
+                        <td>装备强化、卡牌升星。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Strategies -->
+        <section id="strategies" class="container">
+            <h2 class="section-title">实战策略与卡组搭配</h2>
+            <div class="strategy-list">
+                <article class="strategy-item">
+                    <h3>1. 武圣双雄流（萧峰+乔峰）</h3>
+                    <p>利用两位武圣卡牌的羁绊效果，触发“降龙合璧”技能，全队攻击力提升30%。此阵容适合快速推图，但缺乏回复手段，需搭配治疗型辅助卡牌。</p>
+                </article>
+                <article class="strategy-item">
+                    <h3>2. 控制反击流（段正淳+慕容复）</h3>
+                    <p>以慕容复的控制技能为铺垫，搭配段正淳的高频攻击，形成“控制-输出”循环。武圣卡牌在此阵容中负责提供稳定的输出环境。</p>
+                </article>
+                <article class="strategy-item">
+                    <h3>3. 坦克消耗流（虚竹+鸠摩智）</h3>
+                    <p>鸠摩智作为高防坦克吸收伤害，虚竹利用吸星大法回复内力并反击。此阵容极为稳健，适合竞技场防守。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Collection Guide -->
+        <section id="collection" class="container">
+            <h2 class="section-title">收藏与养成建议</h2>
+            <div style="background-color: var(--card-bg); padding: 30px; border-radius: var(--border-radius);">
+                <h3 style="margin-bottom: 20px; color: var(--secondary-color);">如何提升武圣卡品质？</h3>
+                <ul style="list-style-type: disc; padding-left: 20px; color: var(--text-muted);">
+                    <li><strong>升星：</strong> 收集同名卡牌或碎片可进行升星，提升基础属性。</li>
+                    <li><strong>觉醒：</strong> 解锁卡牌隐藏技能，如萧峰觉醒后可获得“震慑”效果。</li>
+                    <li><strong>装备精炼：</strong> 为武圣卡穿戴专属武器和防具，大幅增强特定属性。</li>
+                    <li><strong>羁绊激活：</strong> 集齐特定组合（如“天龙三兄弟”）可激活全属性加成。</li>
+                </ul>
+                <div style="margin-top: 30px; text-align: center;">
+                    <button style="background-color: var(--primary-color); color: white; border: none; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-size: 1rem;">查看最新卡池活动</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">使用协议</a>
+                <a href="#">隐私政策</a>
+                <a href="#">联系管理员</a>
+            </div>
+            <p>&copy; 2023 武圣卡图鉴网. All Rights Reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #555;">本站内容仅供玩家参考，游戏版权归原版权方所有。</p>
+        </div>
+    </footer>
+
+</body>
+</html>
