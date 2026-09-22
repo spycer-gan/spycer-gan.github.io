@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="快压 - 高效便捷的文件压缩与解压工具，支持多种压缩格式，提供极速压缩体验与数据安全保障。">
+    <meta name="keywords" content="快压,压缩软件,解压工具,文件压缩,winrar替代品,免费压缩软件">
+    <title>快压-高效便捷的文件压缩与解压工具</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #e1e4e8;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Utility */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e1e8ed 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .hero-image {
+            background-color: white;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Comparison / Formats */
+        .formats-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .format-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .format-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .format-tag {
+            background-color: #eef6fc;
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .format-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .format-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Usage Guide */
+        .guide-section {
+            padding: 80px 0;
+        }
+
+        .guide-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .guide-sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .guide-list li {
+            margin-bottom: 15px;
+        }
+
+        .guide-list a {
+            display: block;
+            padding: 10px;
+            background: white;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .guide-list a:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .guide-content h3 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: var(--primary-color);
+        }
+
+        .guide-content h4 {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: var(--text-main);
+        }
+
+        .guide-content p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: var(--radius);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin: 15px 0;
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .guide-container {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">快<span>压</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#features" class="active">功能特色</a></li>
+                    <li><a href="#formats">支持格式</a></li>
+                    <li><a href="#guide">使用指南</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">登录</a>
+                <a href="#" class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">立即下载</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>高效便捷的文件压缩与解压工具</h1>
+                <p>支持多种主流压缩格式，提供极速压缩体验与数据安全保障。无论是工作文档还是影音资料，快压都能助您轻松管理。</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" style="padding: 14px 40px; font-size: 18px;">免费下载 V3.0</a>
+                    <a href="#guide" class="btn btn-outline" style="padding: 14px 40px; font-size: 18px;">查看教程</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Placeholder for UI Screenshot -->
+                    <img src="https://picsum.photos/seed/kuaiya_ui/900/400" alt="快压软件界面展示">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>核心功能亮点</h2>
+                    <p>专为提升您的工作效率而设计，界面简洁，操作直观</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>极速压缩</h3>
+                        <p>采用先进的压缩算法，在保证文件完整性的前提下，最大程度减少文件体积，节省存储空间。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>安全加密</h3>
+                        <p>支持设置密码保护，防止重要文件泄露。提供AES-256位加密标准，保障您的数据安全。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>多格式互转</h3>
+                        <p>支持RAR, ZIP, 7Z, TAR, GZ等多种格式的创建、解压与转换，兼容性极强。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>移动端支持</h3>
+                        <p>提供Windows与Android版本，随时随地管理您的压缩文件，工作生活两不误。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supported Formats -->
+        <section id="formats" class="formats-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>全面支持主流格式</h2>
+                    <p>无需担心文件格式不兼容，快压覆盖您日常所需的绝大多数压缩格式</p>
+                </div>
+                <div class="format-grid">
+                    <div class="format-item">
+                        <span class="format-tag">创建</span>
+                        <div class="format-name">ZIP</div>
+                        <div class="format-desc">通用标准格式</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">创建</span>
+                        <div class="format-name">RAR</div>
+                        <div class="format-desc">高压缩率格式</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">创建</span>
+                        <div class="format-name">7Z</div>
+                        <div class="format-desc">开源无损压缩</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">解压</span>
+                        <div class="format-name">TAR.GZ</div>
+                        <div class="format-desc">Linux常用格式</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">解压</span>
+                        <div class="format-name">ISO</div>
+                        <div class="format-desc">镜像文件解压</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">解压</span>
+                        <div class="format-name">ACE</div>
+                        <div class="format-desc">经典归档格式</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">解压</span>
+                        <div class="format-name">LZH</div>
+                        <div class="format-desc">老式压缩格式</div>
+                    </div>
+                    <div class="format-item">
+                        <span class="format-tag">解压</span>
+                        <div class="format-name">JAR</div>
+                        <div class="format-desc">Java归档文件</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Usage Guide -->
+        <section id="guide" class="guide-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>快速使用指南</h2>
+                    <p>无需复杂学习，三步即可完成文件压缩与解压</p>
+                </div>
+                <div class="guide-container">
+                    <aside class="guide-sidebar">
+                        <h3>操作目录</h3>
+                        <ul class="guide-list">
+                            <li><a href="#step1">基础压缩流程</a></li>
+                            <li><a href="#step2">解压文件方法</a></li>
+                            <li><a href="#step3">设置压缩密码</a></li>
+                            <li><a href="#step4">批量处理技巧</a></li>
+                        </ul>
+                    </aside>
+                    <article class="guide-content">
+                        <h3 id="step1">基础压缩流程</h3>
+                        <p>使用快压进行文件压缩非常简单。首先，选中您想要压缩的文件或文件夹，右键点击选择“添加到压缩包”或直接拖拽至快压主界面窗口。</p>
+                        <p>在弹出的压缩设置窗口中，您可以选择压缩格式（如ZIP或7Z）、设置压缩等级（标准、最快、最好）以及添加注释。</p>
+                        <p>确认无误后点击“确定”，软件将自动开始压缩进程，完成后您将在原文件夹中找到生成的压缩包。</p>
+                        
+                        <h3 id="step2">解压文件方法</h3>
+                        <p>对于解压操作，您可以右键点击压缩包文件，选择“解压到当前文件夹”、“解压到指定文件夹”或直接选择“解压到当前文件夹同名文件夹”。快压支持将文件解压到多个位置，极大提高了文件整理效率。</p>
+                        
+                        <h3 id="step3">设置压缩密码</h3>
+                        <p>为了保护您的隐私，建议对敏感文件设置密码。在压缩设置窗口中，点击“高级”选项卡，勾选“设置密码”并输入您想要设置的密码。建议勾选“加密文件名”以防止他人查看压缩包内包含的文件列表。</p>
+                        
+                        <h3 id="step4">批量处理技巧</h3>
+                        <p>快压支持批量压缩功能。您可以在界面左侧或右键菜单中找到“批量压缩”选项。选中多个文件后，软件会自动依次处理，支持跳过已存在的同名文件，非常适合处理成批次的文档归档。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" style="background-color: #f8f9fa; padding: 80px 0;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>常见问题解答</h2>
+                    <p>关于快压软件使用中遇到的疑问与解答</p>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+                        <h4 style="margin-bottom: 10px; color: var(--primary-color);">Q: 快压软件是免费的吗？</h4>
+                        <p style="color: var(--text-secondary);">A: 是的，快压提供基础功能完全免费的版本，支持所有主流格式的解压，压缩功能同样免费使用。</p>
+                    </div>
+                    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+                        <h4 style="margin-bottom: 10px; color: var(--primary-color);">Q: 为什么有些文件无法压缩？</h4>
+                        <p style="color: var(--text-secondary);">A: 通常情况下，快压可以压缩绝大多数文件。如果遇到无法压缩的情况，可能是因为文件正在被其他程序占用，或者文件已损坏。</p>
+                    </div>
+                    <div style="margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+                        <h4 style="margin-bottom: 10px; color: var(--primary-color);">Q: 支持在手机上使用吗？</h4>
+                        <p style="color: var(--text-secondary);">A: 支持。我们提供了Android版本的手机客户端，您可以在各大应用商店搜索“快压”进行下载安装。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="color: white; margin-bottom: 20px;">快<span>压</span></div>
+                    <p style="color: #bdc3c7; font-size: 14px; line-height: 1.8;">
+                        专注于为用户提供高效、安全、便捷的文件压缩与解压解决方案，致力于优化数字存储体验。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#">Windows 下载</a></li>
+                        <li><a href="#">Android 下载</a></li>
+                        <li><a href="#">更新日志</a></li>
+                        <li><a href="#">版本对比</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助支持</h4>
+                    <ul>
+                        <li><a href="#">使用教程</a></li>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系客服</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">服务条款</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 快压软件工作室 版权所有. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+</html>
