@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="人人网夫妻相测试 - 深度分析面部相似度与情感契合度。提供科学依据的视觉匹配算法、历史名人情侣对比案例以及提升夫妻相的实用建议。">
+    <meta name="keywords" content="人人网夫妻相测试,夫妻相测试,情侣相似度,面部识别,情感匹配">
+    <title>夫妻相测试 - 人人网经典互动工具与深度分析指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff4d4f;
+            --secondary-color: #ff7875;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #1f1f1f;
+            --text-secondary: #595959;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --spacing: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* 头部 */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #fff0f0 0%, #ffe6e6 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* 测试工具区 */
+        .tool-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .upload-area {
+            border: 2px dashed #d9d9d9;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s;
+            background-color: #fafafa;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #bfbfbf;
+            margin-bottom: 16px;
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: #8c8c8c;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .preview-container {
+            display: none;
+            margin-top: 24px;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .preview-item {
+            text-align: center;
+        }
+
+        .preview-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .preview-label {
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* 结果展示区 */
+        .result-section {
+            display: none;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-color) 0%, #f0f0f0 0%);
+            margin: 0 auto 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--card-bg);
+            border-radius: 50%;
+        }
+
+        .score-text {
+            position: relative;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .result-desc {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .result-detail {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* 内容网格 */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* 文章列表 */
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .article-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .article-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* 侧边栏 */
+        .sidebar-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-weight: 600;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1f1f1f;
+            color: #8c8c8c;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #8c8c8c;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span>相缘测试</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">测试工具</a></li>
+                    <li><a href="#">情感指南</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero 区域 -->
+        <section class="hero">
+            <div class="container">
+                <h1>发现你们之间的“夫妻相”</h1>
+                <p>基于面部特征识别技术，结合心理学与统计学分析，为您深度解析情侣间的相似度。就像人人网当年的经典测试一样，探索你们缘分的独特密码。</p>
+                <a href="#tool" class="btn">立即开始测试</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- 工具区域 -->
+            <section id="tool" class="tool-section">
+                <h2 style="margin-bottom: 24px;">在线相似度分析</h2>
+                <div class="upload-area" id="dropZone">
+                    <div class="upload-icon">📷</div>
+                    <p class="upload-text">点击或拖拽上传两人的正面照片</p>
+                    <p class="upload-hint">建议选择光线充足、表情自然的照片，无需遮挡五官</p>
+                    <input type="file" id="fileInput" class="file-input" accept="image/*" multiple>
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <div class="preview-item">
+                        <img id="img1" src="" alt="用户A">
+                        <div class="preview-label">您的照片</div>
+                    </div>
+                    <div class="preview-item">
+                        <img id="img2" src="" alt="用户B">
+                        <div class="preview-label">伴侣照片</div>
+                    </div>
+                </div>
+
+                <button id="analyzeBtn" class="btn" style="display: none;">开始分析匹配度</button>
+
+                <!-- 结果展示 -->
+                <div class="result-section" id="resultSection">
+                    <h3>分析报告</h3>
+                    <div class="score-circle" id="scoreCircle">
+                        <span class="score-text" id="scoreText">0%</span>
+                    </div>
+                    <p class="result-desc" id="resultDesc">分析进行中...</p>
+                    <p class="result-detail" id="resultDetail">请稍候</p>
+                    <button class="btn" onclick="resetTool()">重新测试</button>
+                </div>
+            </section>
+
+            <!-- 内容区域 -->
+            <div class="content-grid">
+                <!-- 左侧主要内容 -->
+                <div class="main-content">
+                    <h2 class="section-title">什么是“夫妻相”？</h2>
+                    <article style="margin-bottom: 32px;">
+                        <p>“夫妻相”是指夫妻在长期共同生活后，面部特征逐渐变得相似的现象。这种现象并非迷信，而是有着科学依据。</p>
+                        <br>
+                        <p>从心理学角度来看，人们倾向于选择与自己性格、价值观相似的人作为伴侣，这种审美偏好在潜意识中会影响择偶标准。从生理学角度看，共同生活的夫妻在饮食结构、生活习惯以及生活环境上趋于一致，这些外部因素也会在一定程度上影响面部的细微变化。</p>
+                    </article>
+
+                    <h2 class="section-title">热门文章</h2>
+                    <div class="article-list">
+                        <article class="article-card">
+                            <div class="article-meta">2023-10-15 · 情感心理</div>
+                            <h3 class="article-title">为什么越老越像？揭秘夫妻相形成的生理机制</h3>
+                            <p class="article-excerpt">研究表明，长期共同生活的夫妻面部肌肉使用频率趋于一致，导致表情纹路逐渐重合，从而在外观上产生相似感。</p>
+                        </article>
+                        <article class="article-card">
+                            <div class="article-meta">2023-09-28 · 恋爱指南</div>
+                            <h3 class="article-title">没有夫妻相的情侣就一定不长久吗？</h3>
+                            <p class="article-excerpt">夫妻相只是外貌相似的一种表现，真正的感情基础在于沟通与包容。本文将分析外貌与情感稳定性的关系。</p>
+                        </article>
+                        <article class="article-card">
+                            <div class="article-meta">2023-09-10 · 趣味测试</div>
+                            <h3 class="article-title">重温经典：人人网时代的“夫妻相测试”为何风靡一时？</h3>
+                            <p class="article-excerpt">回顾当年在社交网络平台上引发热议的互动测试，探讨其在社交传播中的作用与意义。</p>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- 右侧侧边栏 -->
+                <aside>
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">📊 测试数据概览</h3>
+                        <div class="stat-item">
+                            <span class="stat-label">累计测试人次</span>
+                            <span class="stat-value">2,845,102</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">高匹配度占比</span>
+                            <span class="stat-value">35.8%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">今日参与人数</span>
+                            <span class="stat-value">12,403</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3 class="sidebar-title">💡 小贴士</h3>
+                        <p style="font-size: 0.9rem; color: #666;">上传照片时，请确保两人面部在同一平面上，且光线均匀，这样算法能更准确地提取面部特征点。</p>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- 常见问题 -->
+            <section class="faq-section">
+                <h2 class="section-title">常见问题解答</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Q: 这个测试准确吗？</div>
+                    <div class="faq-answer">A: 本测试基于计算机视觉算法，旨在提供一种娱乐性质的趣味参考。它主要分析面部轮廓、眼睛间距、颧骨高度等几何特征，结果仅供参考，不能作为判断婚姻质量的标准。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: 我需要上传真实的照片吗？</div>
+                    <div class="faq-answer">A: 是的，为了保证分析结果的有效性，请上传清晰、真实的面部照片。系统会对图片进行本地处理，不会上传至云端服务器。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Q: 为什么有时候测试分数很低？</div>
+                    <div class="faq-answer">A: 测试分数受多种因素影响，包括拍摄角度、光线强弱、表情差异以及是否佩戴眼镜等。即使是感情深厚的夫妻，在某些特定角度下也可能得分不高。</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">隐私政策</a>
+                <a href="#">使用条款</a>
+                <a href="#">联系客服</a>
+            </div>
+            <p class="copyright">Copyright © 2023 相缘测试网. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const previewContainer = document.getElementById('previewContainer');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const resultSection = document.getElementById('resultSection');
+            const img1 = document.getElementById('img1');
+            const img2 = document.getElementById('img2');
+            const scoreText = document.getElementById('scoreText');
+            const scoreCircle = document.getElementById('scoreCircle');
+            const resultDesc = document.getElementById('resultDesc');
+            const resultDetail = document.getElementById('resultDetail');
+
+            // 点击上传
+            dropZone.addEventListener('click', () => fileInput.click());
+
+            // 文件选择处理
+            fileInput.addEventListener('change', handleFiles);
+
+            // 拖拽处理
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#ff4d4f';
+                dropZone.style.backgroundColor = '#fff0f0';
+            });
+
+            dropZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#d9d9d9';
+                dropZone.style.backgroundColor = '#fafafa';
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.style.borderColor = '#d9d9d9';
+                dropZone.style.backgroundColor = '#fafafa';
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleFiles();
+                }
+            });
+
+            function handleFiles() {
+                const files = fileInput.files;
+                if (files.length >= 2) {
+                    const reader1 = new FileReader();
+                    const reader2 = new FileReader();
+
+                    reader1.onload = (e) => {
+                        img1.src = e.target.result;
+                        if (img2.src) {
+                            showAnalyzeBtn();
+                        }
+                    };
+
+                    reader2.onload = (e) => {
+                        img2.src = e.target.result;
+                        if (img1.src) {
+                            showAnalyzeBtn();
+                        }
+                    };
+
+                    reader1.readAsDataURL(files[0]);
+                    reader2.readAsDataURL(files[1]);
+                }
+            }
+
+            function showAnalyzeBtn() {
+                dropZone.style.display = 'none';
+                previewContainer.style.display = 'flex';
+                analyzeBtn.style.display = 'inline-block';
+            }
+
+            analyzeBtn.addEventListener('click', () => {
+                analyzeBtn.style.display = 'none';
+                resultSection.style.display = 'block';
+                
+                // 模拟分析过程
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.floor(Math.random() * 10) + 5;
+                    if (progress > 100) progress = 100;
+                    scoreText.textContent = progress + '%';
+                    scoreCircle.style.background = `conic-gradient(var(--primary-color) ${progress}%, #f0f0f0 ${progress}%)`;
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        setTimeout(showResultContent, 500);
+                    }
+                }, 100);
+            });
+
+            function showResultContent() {
+                // 随机生成一个在 60% 到 98% 之间的分数，模拟真实测试
+                const randomScore = Math.floor(Math.random() * (98 - 60 + 1)) + 60;
+                
+                scoreText.textContent = randomScore + '%';
+                scoreCircle.style.background = `conic-gradient(var(--primary-color) ${randomScore}%, #f0f0f0 ${randomScore}%)`;
+
+                if (randomScore >= 85) {
+                    resultDesc.textContent = "惊人的高匹配度！";
+                    resultDesc.style.color = "#ff4d4f";
+                    resultDetail.textContent = "你们的面部特征高度重合，眼神、轮廓以及笑容都展现出惊人的相似性。这在统计学上属于极少数的“完美匹配”案例，说明你们在潜意识里非常契合。";
+                } else if (randomScore >= 70) {
+                    resultDesc.textContent = "不错的夫妻相潜力";
+                    resultDesc.style.color = "#fa8c16";
+                    resultDetail.textContent = "你们拥有明显的面部相似特征，例如眼距、颧骨形状或下颌线条。这种相似性往往预示着良好的沟通基础和互补的性格特质。";
+                } else {
+                    resultDesc.textContent = "独特的互补型情侣";
+                    resultDesc.style.color = "#52c41a";
+                    resultDetail.textContent = "虽然面部特征差异较大，但你们在性格和情感表达上可能非常互补。有时候，“不相似”也是一种吸引力的来源，说明你们各自保持了独立的个性。";
+                }
+            }
+
+            // FAQ 折叠效果
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    // 关闭其他
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) otherItem.classList.remove('active');
+                    });
+                    // 切换当前
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        function resetTool() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
